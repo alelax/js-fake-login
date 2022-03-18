@@ -9,6 +9,15 @@ document.querySelector('#logout-btn').addEventListener('click', logout);
 let fetchedTodos
 
 
+if (checkCookie('username') !== -1) {
+  toggleTodo(true)
+  fetchTodosList()
+} else {
+  toggleTodo(false)
+}
+
+
+
 async function login() {
   const uname = document.getElementById('form-username').value;
   const pass = document.getElementById('form-password').value;
