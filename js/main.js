@@ -9,6 +9,7 @@
     "email": "Sincere@april.biz",*/
 
 import  {User}  from "./user.js";
+import {Todo} from "./todo.js";
 
 document.querySelector('#login-btn').addEventListener('click', login);
 document.querySelector("#logout-btn").addEventListener('click', logOut);
@@ -27,7 +28,13 @@ async function login() {
         const foundUser = fetchedUsers.find(user => user.username === formUserName && user.password === formUserPassword);
         console.log(foundUser);
         if(foundUser){
-           toogleToDoList(true)
+           const todoResponse = await fetch("https://jsonplaceholder.typicode.com/todos");
+           const todos = await todoResponse.json()
+           const fetchedTodos = todos.map(todo => new Todo(todo.id, todo.title)).slice(0, 20)
+           
+          
+
+           toogleView(true)
         }
     } catch (err) {
         console.log(err);
@@ -37,10 +44,10 @@ async function login() {
 
 
 function logOut(){
-    toogleToDoList(false)
+    toogleView(false)
 }
 
-function toogleToDoList(showTodoList){
+function toogleView(showTodoList){
      document.querySelector(".main").style.display = showTodoList ? "none" :"block";
      document.querySelector(".main-user-logged").style.display = showTodoList ? "block" :"none";
      
@@ -52,6 +59,8 @@ function toogleToDoList(showTodoList){
              document.querySelector(".main-user-logged").style.display="none"
         } */
     }
+
+
 
 
 

@@ -5,7 +5,7 @@ export class User {
     #name;
     #username;
     #email;
-    #password = "PippoBaudo";
+    #password = "111";
 
     constructor(id, name, username, email) {
         this.#id = id;
