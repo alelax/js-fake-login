@@ -1,4 +1,6 @@
-class User {
+
+
+export class User {
     #id;
     #name;
     #username;
@@ -17,6 +19,10 @@ class User {
     }
     set username(nuovoUsername) {
         this.#username = nuovoUsername;
+    }
+
+    get password () {
+        return this.#password;
     }
 
 }
